@@ -42,18 +42,36 @@ public class DatabaseAccess {
 		return connection;		
 	}
 	
-	public ResultSet selectQuery (String query) throws SQLException{
+	public boolean insertQuery(Connection conn, String query){
+		int insertSuccess = 0;
+		try{
+			stmt = conn.createStatement();
+			insertSuccess = stmt.executeUpdate(query);
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		if(insertSuccess == 0)
+			return false;
+		else
+			return true;
+	}
+	
+	public ResultSet selectQuery (Connection conn, String query) throws SQLException{
 		ResultSet rs = null;
 		try{
-			stmt = connection.createStatement();
+			stmt = conn.createStatement();
 			rs = stmt.executeQuery(query);
+			if (!rs.isBeforeFirst() ) {    
+				 System.out.println("No data"); 
+				} 
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 		}
 		finally{
 			if (stmt != null) { 
-				stmt.close(); 
+				//stmt.close(); 
 			}
 		}
 		
