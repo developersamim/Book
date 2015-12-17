@@ -110,7 +110,10 @@ public class SimpleFTPClient
       return true;
     	}
     	else
+    		{
     		this.erMesg = "Connection unsuccesful";
+    		return false;
+    		}
     }
     catch(Exception ex)
     {
