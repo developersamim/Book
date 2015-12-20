@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@page import="com.book.controller.Logout"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -5,8 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
-<link href="resources/css/customStyle.css" rel="stylesheet"/>
+<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="${pageContext.request.contextPath}/resources/css/customStyle.css" rel="stylesheet" type="text/css"/>
 <title>Exam Note</title>
 </head>
 <body>
