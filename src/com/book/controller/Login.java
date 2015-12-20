@@ -46,7 +46,7 @@ public class Login extends HttpServlet{
 			User user = new User();
 			user.setUsername(request.getParameter("username"));
 			session.setAttribute("username", user.getUsername());
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("home.jsp");
 		}else{
 			PrintWriter printWriter = response.getWriter();
 			printWriter.println("username or password incorrect");
