@@ -1,5 +1,8 @@
 package com.book.service;
 import java.net.*;
+
+import javax.servlet.http.Part;
+
 import java.io.*;
 
 public class SimpleFTPClient
@@ -18,13 +21,14 @@ public class SimpleFTPClient
   private String password = "sunit12345";
 
   /** The remote file that needs to be uploaded or downloaded */
-  private String remoteFile = "public_html";
+  private String remoteFile = "";
 
   /** The previous error message triggered after a method is called */
   private String erMesg = "Error Message";
 
   /** The previous success message after any method is called */
   private String succMesg = "Connection Succes!";
+  public String uploadpath;
 
   public SimpleFTPClient()
   {
@@ -49,69 +53,47 @@ public class SimpleFTPClient
 //    this.password = p;
 //  }
 //
-//  /** Setter method for the remote file, this must include the sub-directory path relative
-//   to the user’s home directory, e.g you’e going to download a file that is within a sub directory
-//   called “sdir”, and the file is named “d.txt”, so you shall include the path as “sdir/d.txt”
-//  */
-//  public void setRemoteFile (String d)
-//  {
-//    this.remoteFile = d;
-//  }
 
-//  /** The method that returns the last message of success of any method call */
-//  public synchronized String getLastSuccessMessage()
-//  {
-//    if (succMesg==null ) 
-//    {
-//    	String emty = "";
-//    	return emty; 
-//    }
-//    return succMesg;
-//  }
-
-//  /** The method that returns the last message of error resulted from any exception of any method call */
-//  public synchronized String getLastErrorMessage()
-//  {
-//    if (erMesg==null ) 
-//    {
-//    	String emty = "";
-//    	return emty; 
-//    }
-//    return erMesg;
-//  }
-
-  /** The method that handles file uploading, this method takes the absolute file path
-   of a local file to be uploaded to the remote FTP server, and the remote file will then
-   be transfered to the FTP server and saved as the relative path name specified in method setRemoteFile
-   @param localfilename – the local absolute file name of the file in local hard drive that needs to
-  	FTP over
-  */
-  public synchronized boolean uploadFile (String localfilename)
+  public void setRemoteFile (String d)
+  {
+    this.remoteFile = d;
+    System.out.println("filename:" + d);
+  }
+  /*method to uploadfile in server*/
+  public synchronized boolean uploadFile (String localfilename, String fname)
   {
     try{
+    	setRemoteFile(fname);
     	boolean chk = connect();
     	if(chk == true)
     	{
+    		
+    		System.out.println("uploading...");
+    		//File file = new File(localfilename);
       InputStream is = new FileInputStream(localfilename);
-      BufferedInputStream bis = new BufferedInputStream(is);
-      OutputStream os =m_client.getOutputStream();
-      BufferedOutputStream bos = new BufferedOutputStream(os);
-      byte[] buffer = new byte[1024];
-      int readCount;
+      OutputStream os = m_client.getOutputStream();
+      System.out.println("uploading...os" + os);
+      //byte[] buffer = new byte[(int) file.length()];
+      int i=0;
 
-      while( (readCount = bis.read(buffer)) > 0)
+      while( (i = is.read()) !=-1)
       {
-            bos.write(buffer, 0, readCount);
+    	  
+            os.write((byte)i);
+            
       }
-      bos.close();
+      
+      os.close();
+      is.close();
 
       this.succMesg = "Uploaded!";
-
+      System.out.println("uploaded...");
       return true;
     	}
     	else
     		{
     		this.erMesg = "Connection unsuccesful";
+    		System.out.println("uploadingfailed...");
     		return false;
     		}
     }
@@ -131,6 +113,7 @@ public class SimpleFTPClient
   public synchronized boolean downloadFile (String localfilename)
   {
     try{
+    	System.out.println("uploading...");
       InputStream is = m_client.getInputStream();
       BufferedInputStream bis = new BufferedInputStream(is);
 
@@ -147,7 +130,7 @@ public class SimpleFTPClient
       bos.close();
       is.close (); // close the FTP inputstream
       this.succMesg = "Downloaded!";
-
+      System.out.println("upload sucess...");
       return true;
     }catch(Exception ex)
     {
@@ -155,7 +138,7 @@ public class SimpleFTPClient
       PrintWriter p0= new PrintWriter ( sw0, true );
       ex.printStackTrace ( p0 );
       erMesg = sw0.getBuffer().toString ();
-
+      System.out.println("upload failed...");
       return false;
     }
   }
@@ -164,9 +147,12 @@ public class SimpleFTPClient
   public synchronized boolean connect()
   {
     try{
-    URL url = new URL("ftp://" + user + ":" + password + "@" + host + "/" + remoteFile);//"ftp://” + user + ":" + password + "@" + host + "/" + remoteFile
+    	System.out.println("connecting...");
+    URL url = new URL("ftp://" + user + ":" + password + "@" + host + File.separator + remoteFile);//"ftp://” + user + ":" + password + "@" + host + "/" + remoteFile
+    
+    uploadpath = url.getPath();
     m_client = url.openConnection();
-
+    System.out.println("connection success...");
     return true;
 
     }
