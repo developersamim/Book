@@ -1,3 +1,4 @@
+body,ul, div{ margin: 0; padding:0;}
 .form-signin
 {
     max-width: 330px;
@@ -76,13 +77,65 @@
 
 
 /* style for index page begins here */
+
+div.logo{  border-color: #e0393d;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 14px 4px 6px;
+    color: #000;
+    display: inline-block;
+    font-weight: 700;}
+div.logo a{ color: #000;
+    font-size: 14px;
+    padding: 3px;}
+    
+div.logo a:hover{text-decoration:none;}
+
 header{
 	background: #000000; 
 	color: #ffffff
 	}
-.topbar{ background: #333; padding: 7px;}
-.topbar ul{ list-style: none;}
-.topbar ul li{ float:left; color: #fff}
-.topbar ul li a{color: #ffffff; text-decoration:underline; padding: 0 10px;}
-.topbar ul li a:hover{color: #777777;}
+.topbar{ background: #fff; padding: 7px; border-bottom: 2px solid #ddd;}
+.topbar ul{ float:right; margin-top: 3px;}
+.topbar ul li{ float:left; color: #fff; padding: 7px;}
+.topbar ul li.button{background: #e0393e none repeat scroll 0 0;  box-shadow:#851518 0 2px 0 0;}
+.topbar ul li.button:hover{background: #d02126}
+.topbar ul li a{color: #3987cb;  padding: 0 10px;}
+.topbar ul li.button a{ text-decoration:none; font-size:16px; font-weight:700; line-height: 1; color: #fff}
+.topbar ul li a:hover{}
+.topbar ul li.button a:hover{ color: #fff}
+
+
+
+/* style for signup page starts here */
+section#firstsection{ background: #303841;}
+section#firstsection div.signup{ background: #fff; margin-top: 15px;}
+form{ padding: 10px 0;}
+form div.labelinput{ clear:both; margin-bottom: 10px; overflow:hidden;}
+form div.labelinput div.input{}
+form div.labelinput div.input input[type="text"],input[type="password"] {border: 1px solid #ccc;
+    font-size: 16px;
+    padding: 8px;
+    width: 100%; border-radius: 2.5px; color: #555;}
+form div.labelinput div.label{ color: #555; height: 41px; line-height: 41px;}
+form div.labelinput div.label label{ font-weight: normal; font-size: 18px; float:left;}
+form div.labelinput.sex{margin-bottom: 0}
+form div.input.sex{ height: 41px; line-height: 41px;}
+form div.input.birthday{height: 39px; line-height: 39px;}
+form input.submit[type=submit]{  background: #e0393e none repeat scroll 0 0;
+    border: 0 none;
+    box-shadow: 0 2px 0 0 #851518;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 10px;
+    width: 100%;}
+form div.submitButton{ padding:0}
+form input.normal[type=radio]{ vertical-align:middle; margin-top:-3px;}
+form select.birthday{ padding: 10px 4px; margin-right:3px; width:32%;}
+form select.last{margin-right:0;}
+form label.sex{ margin:0 3px; font-weight: normal; font-size:16px;}
+form label.sex.first{ margin-right:20px;}
+form hr.line{ border-color: #ccc;}
+/* style for signup page ends here */
 /* style for index page ends here */
