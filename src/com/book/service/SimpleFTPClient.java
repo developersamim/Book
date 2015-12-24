@@ -8,7 +8,12 @@ import java.io.*;
 public abstract class SimpleFTPClient extends HttpServlet
 {
 
-  /** The URL connection object */
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/** The URL connection object */
   private URLConnection m_client;
 
   /** The FTP host/server to be connected */
@@ -22,8 +27,8 @@ public abstract class SimpleFTPClient extends HttpServlet
 
   /** The remote file that needs to be uploaded or download */
   private String remoteFile;
-  private String addressPath = "ftp://" + user + ":" + password + "@" + host + File.separator + remoteFile;
-  public void setAddressOath(String a)
+  private String addressPath ;//= "ftp://" + user + ":" + password + "@" + host + File.separator + remoteFile;
+  public void setAddressPath(String a)
   {
 	  this.addressPath = a;
   }
@@ -36,6 +41,8 @@ public abstract class SimpleFTPClient extends HttpServlet
 	  	this.setHost("orderbook.comlu.com");
 		this.setUser("a5388597");
 		this.setPassword("sunit12345");
+		this.setRemoteFile("public_html");
+		this.setAddressPath("ftp://" + user + ":" + password + "@" + host + File.separator + remoteFile);
   }
 
   /** Setter method for the FTP host/server */
@@ -137,8 +144,6 @@ public abstract class SimpleFTPClient extends HttpServlet
     try{
     	System.out.println("connecting...");
     URL url = new URL("ftp://" + user + ":" + password + "@" + host + File.separator + remoteFile);//"ftp://” + user + ":" + password + "@" + host + "/" + remoteFile
-    
-    //uploadpath = url.getPath();
     m_client = url.openConnection();
     System.out.println("connection success...");
     return true;
@@ -156,13 +161,14 @@ public abstract class SimpleFTPClient extends HttpServlet
   /**Find list of items in server*/
   public synchronized File[] fileItem()
   {
+	  File folder = new File("addressPath");
 	  File[] filelist = null;
 	  try{
-	    	setRemoteFile("public_html/book");
+	    	//setRemoteFile("public_html/book");
 	    	boolean chk = connect();
 	    	if(chk == true)
 	    	{
-	  	   filelist = new File(addressPath).listFiles();
+	    		  filelist = folder.listFiles();
 	  	 System.out.println("filelist size" + filelist.length);
 //	  	  request.setAttribute("files", files);
 //	  	  request.getRequestDispatcher("/WEB-INF/uploads.jsp").forward(request, response);
