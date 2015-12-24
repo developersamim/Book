@@ -3,12 +3,22 @@
   <display-name>Book</display-name>
 
   <servlet>
-  	<servlet-name>HomeServlet</servlet-name>
-  	<servlet-class>com.book.controller.HomeServlet</servlet-class>
-  	<load-on-startup>1</load-on-startup>
+    <servlet-name>HomeServlet</servlet-name>
+    <servlet-class>com.book.controller.HomeServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>HomeServlet</servlet-name>
-  	<url-pattern></url-pattern>
-  </servlet-mapping>  
+    <servlet-name>HomeServlet</servlet-name>
+    <url-pattern></url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>FileDownloadServlet</servlet-name>
+  	<servlet-class>com.book.controller.FileDownloadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>FileDownloadServlet</servlet-name>
+  	<url-pattern>/FileDownloadServlet</url-pattern>
+  </servlet-mapping>
+  
+
 </web-app>
