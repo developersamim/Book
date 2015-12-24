@@ -2,7 +2,7 @@ package com.book.controller;
 //package com.book.service;
 import java.io.File;
 import java.io.IOException;
-import java.net.URLConnection;
+//import java.net.URLConnection;
 import com.book.service.SimpleFTPClient;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -10,7 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.Part; 
 
 
 
@@ -19,40 +19,37 @@ import javax.servlet.http.Part;
 @MultipartConfig(fileSizeThreshold=1024*1024*10,    // 10 MB 
                  maxFileSize=1024*1024*50,          // 50 MB
                  maxRequestSize=1024*1024*100)      // 100 MB
-public class FileUploadServlet extends HttpServlet {
+public class FileUploadServlet extends SimpleFTPClient{
    
      
-    /**
-	 *  private static final long serialVersionUID = 205242440643911308L;
-	 */
-	private URLConnection m_client;
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 	/**
      * Directory where uploaded files will be saved, its relative to
      * the web application directory.
      */
     private static final String UPLOAD_DIR = "uploads";
-      
+    public  FileUploadServlet()
+    {
+    	super();
+    	//ServerDetails da = new ServerDetails();
+    	 
+    }
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         // gets absolute path of the web application
 <<<<<<< HEAD
-    	SimpleFTPClient ftp = new SimpleFTPClient();
-    	
-=======
     	//SimpleFTPClient da;
->>>>>>> developersamim/master
+=======
+    	//SimpleFTPClient ftp = new SimpleFTPClient();
+>>>>>>> origin/master
         String applicationPath = request.getServletContext().getRealPath("fileName");
         // constructs path of the directory to save uploaded file
         String uploadFilePath = applicationPath + File.separator + UPLOAD_DIR;
         File fileSaveDir = new File(uploadFilePath);
         if (!fileSaveDir.exists()) {
             fileSaveDir.mkdirs();
-        }
-         
-      String fileName = null;
-     
-      String filepath = null;
+        }        
+      String fileName = null;     
       boolean chk = false;
         for (Part part : request.getParts()) {
             fileName = getFileName(part);
@@ -60,7 +57,7 @@ public class FileUploadServlet extends HttpServlet {
             
             part.write(uploadFilePath + File.separator + fileName);
      
-            	 chk = ftp.uploadFile(uploadFilePath + File.separator + fileName, fileName);
+            	 chk = uploadFile(uploadFilePath + File.separator + fileName, fileName);
             
             
         }
