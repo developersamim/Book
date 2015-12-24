@@ -11,21 +11,26 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/StartMyPage")
 public class HomeServlet extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("this is StartFirst Class");
 		req.setAttribute("attribute1", "coffee");
-<<<<<<< HEAD
+
 		RequestDispatcher requestDispatcher = req.getRequestDispatcher("home.jsp");
 		requestDispatcher.forward(req, resp);
 		
 		//resp.sendRedirect("home.jsp");
-=======
+
 		//RequestDispatcher requestDispatcher = req.getRequestDispatcher("firstpage.jsp");
 		//requestDispatcher.forward(req, resp);
 		
-		resp.sendRedirect("home.jsp");
->>>>>>> origin/master
+		//resp.sendRedirect("home.jsp");
+
 	}
 	
 }
