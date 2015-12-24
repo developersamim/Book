@@ -48,7 +48,11 @@ public class HomeServlet extends HttpServlet{
 		//RequestDispatcher requestDispatcher = req.getRequestDispatcher("firstpage.jsp");
 		//requestDispatcher.forward(req, resp);
 		
+<<<<<<< HEAD
 		resp.sendRedirect("home.jsp");
+=======
+		//resp.sendRedirect("home.jsp");
+>>>>>>> refs/remotes/developersamim/master
 
 	}
 	

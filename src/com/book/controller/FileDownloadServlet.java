@@ -31,6 +31,7 @@ public class FileDownloadServlet extends SimpleFTPClient {
 		// TODO Auto-generated method stub
 		
 		//SimpleFTPClient ftp = new SimpleFTPClient();
+		
 		File[] files = fileItem();	
 		//System.out.println("connecting...download" + files.length);
 		request.setAttribute("files", "sunit");
