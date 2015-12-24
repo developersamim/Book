@@ -9,11 +9,12 @@ public class User {
 	private String username;
 	private String password;
 	private Date dateOfBirth;
-	private int status;
+	private char status;
 	private Date createdUser;
 	private Date lastLogin;
 	private String emailAddress;
 	private String ipAddress;
+	private char sex;
 	
 	public User(){
 		
@@ -52,10 +53,10 @@ public class User {
 	public Date getDateOfBirth(){
 		return dateOfBirth;
 	}
-	public void setStatus(int status){
+	public void setStatus(char status){
 		this.status = status;
 	}
-	public int getStatus(){
+	public char getStatus(){
 		return status;
 	}
 	public void setCreatedUser(Date createdUser){
@@ -81,6 +82,13 @@ public class User {
 	}
 	public String getIpAddress(){
 		return ipAddress;
+	}
+	
+	public void setSex(char sex){
+		this.sex = sex;
+	}
+	public char getSex(){
+		return sex;
 	}
 
 }
