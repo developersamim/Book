@@ -7,7 +7,7 @@
   <servlet>
   	<servlet-name>HomeServlet</servlet-name>
   	<servlet-class>com.book.controller.HomeServlet</servlet-class>
-  	<load-on-startup>1</load-on-startup>
+  <!-- 	<load-on-startup>1</load-on-startup> -->
   </servlet>
   <servlet-mapping>
   	<servlet-name>HomeServlet</servlet-name>

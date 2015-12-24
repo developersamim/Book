@@ -86,3 +86,37 @@ header{
 .topbar ul li a{color: #ffffff; text-decoration:underline; padding: 0 10px;}
 .topbar ul li a:hover{color: #777777;}
 /* style for index page ends here */
+
+/* to change the alternate color of the table row*/
+.addSubject{
+	float: right;
+	margin-right: 50px;
+}
+table tr:nth-child(odd) { background-color: #ccc; }
+.subject-space
+{ word-spacing: 15px;}
+.subject-column-space
+{ 	
+	word-spacing: 200px;
+}
+
+/*defines the html element to be hidden */
+.hidden
+{
+	display: none;
+}
+/*define the postions an styles for popup div*/
+#addSubject 
+{
+	position:absolute;
+	width:400px; height:400px;
+	border:5px solid #000;
+	margin-left:250px;
+	
+}
+#addSubject td
+{
+	text-align:left;
+	margin-left:50px;
+	
+}
