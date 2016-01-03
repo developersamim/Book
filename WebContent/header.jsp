@@ -1,10 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@page import="com.book.controller.Logout"%>
+<%@page import="com.book.dao.User" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%
+//User user = (User) session.getAttribute("user");
+%>
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -22,11 +26,11 @@
 				</div>
 				<div class="col-md-4 col-md-offset-6">					
 					<ul>
-						<% if(session.getAttribute("username") == null){ %>
+						<% if(session.getAttribute("user") == null){ %>
 							<li><a href="login.jsp" class="login">Log in</a></li>
 							<li class="button"><a href="signup.jsp" class="signup">Sign up</a></li>
-						<% } else{ %>
-							<li>Hello <% out.print(session.getAttribute("username")); %> !</li>
+						<% } else{ User user = (User) session.getAttribute("user");%>
+							<li>Hello <% out.print(user.getFirstname()); %> !</li>
 							<li><a href="Logout" class="logout">LogOut</a>
 						<% } %>
 					</ul>								

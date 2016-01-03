@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="/Users/sunit/Documents/workspace/Book/WebContent/WEB-INF/lib/jsp-api-2.1.jar"/>
-	<classpathentry kind="lib" path="/Users/sunit/Documents/workspace/Book/WebContent/WEB-INF/lib/jstl-1.2.jar"/>
-	<classpathentry kind="lib" path="/Users/sunit/Documents/workspace/Book/WebContent/WEB-INF/lib/mysql-connector-java-5.1.37-bin.jar"/>
-	<classpathentry kind="lib" path="/Users/sunit/Documents/workspace/Book/WebContent/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="E:/java/project/Book/WebContent/WEB-INF/lib/jsp-api-2.1.jar"/>
+	<classpathentry kind="lib" path="E:/java/project/Book/WebContent/WEB-INF/lib/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="E:/java/project/Book/WebContent/WEB-INF/lib/mysql-connector-java-5.1.37-bin.jar"/>
+	<classpathentry kind="lib" path="E:/java/project/Book/WebContent/WEB-INF/lib/servlet-api.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="E:/java/project/Book/WebContent/WEB-INF/lib/json-simple-1.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/java/project/Book/WebContent/WEB-INF/lib/java-mail-1.4.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

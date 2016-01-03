@@ -113,7 +113,7 @@ section#firstsection div.signup{ background: #fff; margin-top: 15px;}
 form{ padding: 10px 0;}
 form div.labelinput{ clear:both; margin-bottom: 10px; overflow:hidden;}
 form div.labelinput div.input{}
-form div.labelinput div.input input[type="text"],input[type="password"] {border: 1px solid #ccc;
+form div.labelinput div.input input[type="text"],input[type="password"], input[type=email] {border: 1px solid #ccc;
     font-size: 16px;
     padding: 8px;
     width: 100%; border-radius: 2.5px; color: #555;}
@@ -122,7 +122,7 @@ form div.labelinput div.label label{ font-weight: normal; font-size: 18px; float
 form div.labelinput.sex{margin-bottom: 0}
 form div.input.sex{ height: 41px; line-height: 41px;}
 form div.input.birthday{height: 39px; line-height: 39px;}
-form input.submit[type=submit]{  background: #e0393e none repeat scroll 0 0;
+form input.submit, button.submit[type=submit]{  background: #e0393e none repeat scroll 0 0;
     border: 0 none;
     box-shadow: 0 2px 0 0 #851518;
     color: #fff;
@@ -137,5 +137,9 @@ form select.last{margin-right:0;}
 form label.sex{ margin:0 3px; font-weight: normal; font-size:16px;}
 form label.sex.first{ margin-right:20px;}
 form hr.line{ border-color: #ccc;}
+
+/* error starts here */
+form input.inputTextRequired{border-color: #a94442 !important;}
+/* error ends here */
 /* style for signup page ends here */
 /* style for index page ends here */

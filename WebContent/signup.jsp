@@ -5,97 +5,69 @@
 	<section id="firstsection">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6 col-md-offset-3 signup">
-					<form method="POST" action="Signup">
-						<div class="labelinput">
+				<div class="col-md-6 col-md-offset-3 signup" ng-controller="signupController">
+					<form name="signupForm" ng-submit="createUser(signupForm.$valid)" novalidate>
+						<div class="labelinput" ng-class="{ 'has-error' : signupForm.firstname.$invalid && submitted }">
 							<div class="col-md-3 label">
 								<label>Firstname</label>
 							</div>
 							<div class="col-md-9 input">
-								<input type="text" name="firstname">
+								<input type="text" name="firstname" ng-class="{'inputTextRequired' : signupForm.firstname.$invalid && submitted}" ng-maxlength="30" ng-minlength="2" ng-model="user.firstname" required>
+								<div ng-messages="signupForm.firstname.$error">
+									<p ng-show="signupForm.firstname.$error.required && submitted" class="help-block">Your first name is required.</p>
+									<p ng-show="signupForm.firstname.$error.maxlength && submitted" class="help-block">Your first name must be less than 30 characters.</p>
+									<p ng-show="signupForm.firstname.$error.minlength && submitted" class="help-block">Your first name must be greater than 2 characters.</p>
+								</div>
+								
 							</div>
 						</div>
-						<div class="labelinput">
+						<div class="labelinput" ng-class="{ 'has-error' : signupForm.lastname.$invalid && submitted }">
 							<div class="col-md-3 label">
 								<label>Lastname</label>
 							</div>
 							<div class="col-md-9 input">
-								<input type="text" name="lastname">
+								<input type="text" name="lastname" ng-model="user.lastname" ng-maxlength="30" ng-minlength="2" ng-class="{'inputTextRequired' : signupForm.lastname.$invalid && submitted}" required>
+								<div ng-messages="signupForm.lastname.$error">
+									<p ng-show="signupForm.lastname.$error.required && submitted" class="help-block">Your last name is required.</p>
+									<p ng-show="signupForm.lastname.$error.maxlength && submitted" class="help-block">Your last name must be less than 30 characters.</p>
+									<p ng-show="signupForm.lastname.$error.minlength && submitted" class="help-block">Your last name must be greater than 2 characters.</p>
+								</div>
+								
 							</div>
 						</div>
-						<div class="labelinput">
+						<div class="labelinput" ng-class="{ 'has-error' : signupForm.emailAddress.$invalid && submitted }">
 							<div class="col-md-3 label">
 								<label>Email</label>
 							</div>
 							<div class="col-md-9 input">
-								<input type="text" name="emailAddress">
+								<input type="email" name="emailAddress" ng-model="user.emailAddress" ng-class="{'inputTextRequired' : signupForm.emailAddress.$invalid && submitted}" required>
+								<div ng-messages="signupForm.emailAddress.$error" role="alert">
+									<p ng-show="signupForm.emailAddress.$error.required && submitted" class="help-block">Your email address is required.</p>
+									<p ng-show="signupForm.emailAddress.$error.email && submitted" class="help-block">Not valid email address.</p>
+								</div>
+								
+								
 							</div>
 						</div>
-						<div class="labelinput">
-							<div class="col-md-3 label">
-								<label>Username</label>
-							</div>
-							<div class="col-md-9 input">
-								<input type="text" name="username">
-							</div>
-						</div>
-						<div class="labelinput">
+						<div class="labelinput" ng-class="{ 'has-error' : signupForm.password.$invalid && submitted }">
 							<div class="col-md-3 label">
 								<label>Password</label>
 							</div>
-							<div class="col-md-9 input">
-								<input type="password" name="password">
+							<div class="col-md-9 input" role="alert">
+								<input type="password" name="password" ng-model="user.password" ng-class="{'inputTextRequired' : signupForm.password.$invalid && submitted}" required ng-maxlength="56" ng-minlength="5">
+								<div ng-messages="signupForm.password.$error">
+									<p ng-show="signupForm.password.$error.required && submitted" class="help-block">Your password is required.</p>
+									<p ng-show="signupForm.password.$error.maxlength && submitted" class="help-block">Your password must be less than 56 characters.</p>
+									<p ng-show="signupForm.password.$error.minlength && submitted" class="help-block">Your password must be greater than 5 characters.</p>
+								</div>
+								
 							</div>
 						</div>
-						<div class="labelinput">
-							<div class="col-md-3 label">
-								<label>BirthDay</label>
-							</div>
-							<div class="col-md-9 input birthday">
-								<select name="day" class="birthday">
-									<option value="">Day</option>
-									<% for(int i = 1; i <= 31; i++){ %>
-									<option value="<%= i %>"><%= i %></option>
-									<% } %>
-								</select>
-								<select name="month" class="birthday">
-									<option value="">Month</option>
-									<option value="1">Jan</option>
-									<option value="2">Feb</option>
-									<option value="3">Mar</option>
-									<option value="4">Apr</option>
-									<option value="5">May</option>
-									<option value="6">Jun</option>
-									<option value="7">Jul</option>
-									<option value="8">Aug</option>
-									<option value="9">Sep</option>
-									<option value="10">Oct</option>
-									<option value="11">Nov</option>
-									<option value="12">Dec</option>
-								</select>
-								<select name="year" class="birthday last">
-									<option value="">Year</option>
-									<% for(int j = currentYear; j >= 1905; j--){ %>
-									<option value="<%= j %>"><%= j %></option>
-									<% } %>
-								</select>
-							</div>
-						</div>
-						<div class="labelinput sex">
-							<div class="col-md-3 label">
-								<label>Sex</label>
-							</div>
-							<div class="col-md-9 input sex">
-								<input type="radio" name="sex" value="F" id="female" class="normal"/>
-								<label class="sex first" for="female">Female</label>
-								<input type="radio" name="sex" value="M" id="male" class="normal"/>
-								<label class="sex" for="male">Male</label>
-							</div>
-						</div>
+					
 						<hr class="line"/>
 						<div class="labelinput">
 							<div class="col-md-12 submitButton">
-								<input class="submit" type="submit" value="Sign up"/>
+								<button class="submit" type="submit"/>Sign up</button>
 							</div>
 						</div>
 						
@@ -104,5 +76,4 @@
 			</div>
 		</div>
 	</section>
-</body>
-</html>
+<jsp:include page="footer.jsp"></jsp:include>

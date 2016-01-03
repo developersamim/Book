@@ -1,5 +1,6 @@
 package com.book.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
@@ -7,78 +8,125 @@ import java.security.Key;
 import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
+import java.util.Properties;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import com.book.dao.User;
 import com.book.service.DatabaseAccess;
+import com.book.service.SendEmailGmailSmtp;
+import com.book.service.SendEmailOptusSmtp;
+import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 
-@WebServlet("/Signup")
+
 public class Signup extends HttpServlet{
 	
-	String firstname, lastname, emailAddress, username, password, dateOfBirthString, createdUser, lastLogin, ipAddress;
-	char status, sex;
-	String inputDay, inputMonth, inputYear;
+	String firstname, lastname, emailAddress, password, createdUser, lastLogin, ipAddress;
+	char status;
 	User user;
 	
 	Connection conn;
+	DatabaseAccess databaseAccess;
 		
-	public Signup(){
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		signupConfirmation(request, response);
+	}
+	
+	private void signupConfirmation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
+		int loginId = Integer.parseInt(request.getParameter("id"));
+		String query = "update user set status='C' where id="+loginId;
+		boolean updateSuccess = databaseAccess.updateQuery(conn, query);
+		if(updateSuccess){
+			setSession(user, request);
+			response.sendRedirect("home.jsp");
+		}
 		
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("code is here");
 		
-		boolean signupSuccess = doProcess(request, response);	
-		if(signupSuccess){
-			user = getUserObject();
+		
+		
+		StringBuffer sb = new StringBuffer();
+		BufferedReader reader = request.getReader();
+		String line= null;
+		while((line = reader.readLine()) != null){
+			sb.append(line);
+		}
+		System.out.println(sb);
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObjectUser = null;
+		try{
+			jsonObjectUser = (JSONObject) jsonParser.parse(sb.toString());
+		}catch(org.json.simple.parser.ParseException e){
+			e.printStackTrace();
+		}
+		
+		int signupSuccess = doProcess(request, response, jsonObjectUser);	
+		if(signupSuccess != 0){
+			
+			user = getUserObject(signupSuccess);
 			setSession(user, request);
+			
+			// send email to the new user for confirmation
+			SendEmailOptusSmtp sendEmailOptusSmtp = new SendEmailOptusSmtp("developersamim@gmail.com", "hasmi2006@gmail.com", user, request, response);
+			sendEmailOptusSmtp.sendEmail();
+			
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			
+			out.write("all done");
+			out.flush();
+			out.close();
+//			RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
+//			requestDispatcher.forward(request, response);
+//			return;
 		}
 	}
 	
-	private boolean doProcess(HttpServletRequest request, HttpServletResponse response){
-		firstname = request.getParameter("firstname");
-		lastname= request.getParameter("lastname");
-		emailAddress = request.getParameter("emailAddress");
-		sex = request.getParameter("sex").charAt(0);
-		username = request.getParameter("username");
-		password = request.getParameter("password");
-		inputDay = request.getParameter("day");
-		inputMonth = request.getParameter("month");
-		inputYear = request.getParameter("year");
-		
-		
-		
-		dateOfBirthString = inputYear+"/"+inputMonth+"/"+inputDay;
+	private int doProcess(HttpServletRequest request, HttpServletResponse response, JSONObject jsonObjectUser){
+//		firstname = request.getParameter("firstname");
+//		lastname= request.getParameter("lastname");
+//		emailAddress = request.getParameter("emailAddress");		
+//		password = request.getParameter("password");	
+		firstname = (String) jsonObjectUser.get("firstname");
+		lastname= (String) jsonObjectUser.get("lastname");
+		emailAddress = (String) jsonObjectUser.get("emailAddress");		
+		password = (String) jsonObjectUser.get("password");	
 				
 		createdUser = getCurrentDate();
 		lastLogin = getCurrentDate();
-		status = 'A';
+		status = 'N';
 		ipAddress = getIPAddress();
 		
 		password = getEncryptedPassword(password);
 		
-		DatabaseAccess databaseAccess = new DatabaseAccess("examnote", "root", "", 3306);
+		databaseAccess = new DatabaseAccess("examnote", "root", "", 3306);
 		conn = databaseAccess.getConnection();
-		String query = "insert into user(username, password, firstname, lastname, dateOfBirth, sex, emailAddress, createdUser, lastLogin, ipAddress, status) values('"+username+"', '"+ password+"', '"+firstname+"', '"+lastname+"', '"+dateOfBirthString+"', '"+sex+"', '"+emailAddress+"', '"+createdUser+"', '"+lastLogin+"', '"+ipAddress+"', '"+status+"')";
-		boolean insertSuccess = databaseAccess.insertQuery(conn, query);
-		
-		if(insertSuccess){
-			return true;
-		}
-		return false;	
+		String query = "insert into user(username, password, firstname, lastname, emailAddress, createdUser, lastLogin, ipAddress, status) values('"+emailAddress+"', '"+ password+"', '"+firstname+"', '"+lastname+"', '"+emailAddress+"', '"+createdUser+"', '"+lastLogin+"', '"+ipAddress+"', '"+status+"')";
+		int insertSuccess = databaseAccess.insertQueryReturnId(conn, query);
+		return insertSuccess;
 	}
 	
 	private String getEncryptedPassword(String textToEncrypt){ // 128 bit key
@@ -103,6 +151,7 @@ public class Signup extends HttpServlet{
         return toReturn;
 	}
 	
+	
 	private String getCurrentDate(){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date dateObject = new Date();
@@ -120,21 +169,12 @@ public class Signup extends HttpServlet{
 		
 		return IP.getHostAddress();
 	}
-	private User getUserObject(){
+	private User getUserObject(int loginId){
 		
-		Date dateOfBirth = null;
 		Date createdUserDate = null;
 		Date lastLoginDate = null;
-		String dateInString = inputDay+"/"+inputMonth+"/"+inputYear;
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		try{
-			dateOfBirth = formatter.parse(dateInString);
-		}
-		catch(ParseException e){
-			e.printStackTrace();
-		}
 		
-		formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		try{
 			createdUserDate = formatter.parse(createdUser);
 			lastLoginDate = formatter.parse(lastLogin);
@@ -144,15 +184,14 @@ public class Signup extends HttpServlet{
 		}
 		
 		User user = new User();
-		user.setUsername(username);
+		user.setLoginId(loginId);
+		user.setUsername(emailAddress);
 		user.setPassword(password);
 		user.setFirstname(firstname);
 		user.setLastname(lastname);
-		user.setDateOfBirth(dateOfBirth);
 		user.setCreatedUser(createdUserDate);
 		user.setLastLogin(lastLoginDate);
 		user.setStatus(status);
-		user.setSex(sex);
 		user.setEmailAddress(emailAddress);
 		user.setIpAddress(ipAddress);
 		return user;
@@ -161,4 +200,48 @@ public class Signup extends HttpServlet{
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
 	}
+	
+	public void sendEmail(String recepientEmail){
+		// Recipient's email id need to be mentioned
+		String to = recepientEmail;
+		
+		// Sender's email id need to be mentioned
+		String from = "developersamim@gmail.com";
+		
+		// Assuming you are sending email from localhost
+		String host = "localhost";
+		
+		// Get system properties
+		Properties properties = System.getProperties();
+		
+		// Set up mail server
+		properties.setProperty("mail.smtp.host", host);
+		
+		// Get the default session object
+		Session session = Session.getDefaultInstance(properties);
+		try{
+			MimeMessage mimeMessage = new MimeMessage(session);
+			mimeMessage.setFrom(new InternetAddress(from));
+			// Set To: header field of the header.
+	         mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+	         // Set Subject: header field
+	         mimeMessage.setSubject("This is the Subject Line!");
+
+	         // Send the actual HTML message, as big as you like
+	         mimeMessage.setContent("<h1>This is actual message</h1>", "text/html" );
+	         
+	         //Send message
+	         Transport.send(mimeMessage);
+	         System.out.println("Sent message successfully....");
+
+		}catch(javax.mail.MessagingException e){
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
 }
+
