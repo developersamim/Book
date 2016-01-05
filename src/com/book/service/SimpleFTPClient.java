@@ -1,5 +1,7 @@
 package com.book.service;
 import java.net.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 
@@ -63,11 +65,9 @@ public abstract class SimpleFTPClient extends HttpServlet
     this.password = p;
   }
 
-
   public void setRemoteFile (String d)
   {
     this.remoteFile = d;
-   // System.out.println("filename:" + d);
   }
   /*method to upload file in server*/
   public synchronized boolean uploadFile (String localfilePath, String fname)
@@ -113,7 +113,7 @@ public abstract class SimpleFTPClient extends HttpServlet
   public synchronized boolean downloadFile (String localfilePath)
   {
     try{
-      InputStream is = m_client.getInputStream();
+      InputStream is = new FileInputStream("");
       OutputStream os = new FileOutputStream(localfilePath);
       int i=0;
 
@@ -159,20 +159,29 @@ public abstract class SimpleFTPClient extends HttpServlet
     }
   }
   /**Find list of items in server*/
-  public synchronized File[] fileItem()
-  {
-	  File folder = new File("addressPath");
-	  File[] filelist = null;
-	  try{
-	    	//setRemoteFile("public_html/book");
+public synchronized List<String> fileItem()
+  {	  
+	/*find list of files from server start*/
+	  setRemoteFile("public_html/book;type=d");
+	  List<String> filelist = new ArrayList<String>();
+	  try{		
 	    	boolean chk = connect();
-	    	if(chk == true)
-	    	{
-	    		  filelist = folder.listFiles();
-	  	 System.out.println("filelist size" + filelist.length);
-//	  	  request.setAttribute("files", files);
-//	  	  request.getRequestDispatcher("/WEB-INF/uploads.jsp").forward(request, response);
-	    	}
+	    	InputStream inputStream = m_client.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line = null;
+            System.out.println("--- START ---");
+            while ((line = reader.readLine()) != null) {
+            	if(!line.startsWith("."))
+            	{
+            		File folder = new File(m_client.getURL().toExternalForm() +File.separator + line);
+            		System.out.println(folder);
+            		filelist.add(folder.toString());
+                    System.out.println(folder.toString());
+            	}
+            	
+            }
+            System.out.println("--- END ---");
+            inputStream.close();  	
 	    	return filelist;
 	  }catch(Exception ex)
 	    {
