@@ -27,9 +27,9 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import src.com.book.dao.User;
-import src.com.book.service.DatabaseAccess;
-import src.com.book.service.SendEmailOptusSmtp;
+import com.book.dao.User;
+import com.book.service.DatabaseAccess;
+import com.book.service.SendEmailOptusSmtp;
 
 
 public class Signup extends HttpServlet{

@@ -10,8 +10,8 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import src.com.book.controller.Login;
-import src.com.book.dao.User;
+import com.book.controller.Login;
+import com.book.dao.User;
 
 public class SendEmailOptusSmtp {
 	

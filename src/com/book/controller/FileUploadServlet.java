@@ -37,19 +37,7 @@ public class FileUploadServlet extends SimpleFTPClient{
     }
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-<<<<<<< HEAD
-        // gets absolute path of the web application
 
-    	//SimpleFTPClient ftp = new SimpleFTPClient();
-    	
-
-    	//SimpleFTPClient da;
-
-    	//SimpleFTPClient da;
-
-    	//SimpleFTPClient ftp = new SimpleFTPClient();
-=======
->>>>>>> refs/remotes/developersamim/master
 
         String applicationPath = request.getServletContext().getRealPath(UPLOAD_DIR);
         // constructs path of the directory to save uploaded file
