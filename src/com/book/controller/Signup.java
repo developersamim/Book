@@ -14,10 +14,8 @@ import java.util.Properties;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
@@ -29,11 +27,9 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import com.book.dao.User;
-import com.book.service.DatabaseAccess;
-import com.book.service.SendEmailGmailSmtp;
-import com.book.service.SendEmailOptusSmtp;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
+import src.com.book.dao.User;
+import src.com.book.service.DatabaseAccess;
+import src.com.book.service.SendEmailOptusSmtp;
 
 
 public class Signup extends HttpServlet{

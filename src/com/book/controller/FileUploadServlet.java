@@ -2,15 +2,16 @@ package com.book.controller;
 //package com.book.service;
 import java.io.File;
 import java.io.IOException;
-//import java.net.URLConnection;
-import com.book.service.SimpleFTPClient;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part; 
+import javax.servlet.http.Part;
+
+//import java.net.URLConnection;
+import com.book.service.SimpleFTPClient; 
 
 
 
@@ -36,6 +37,19 @@ public class FileUploadServlet extends SimpleFTPClient{
     }
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
+        // gets absolute path of the web application
+
+    	//SimpleFTPClient ftp = new SimpleFTPClient();
+    	
+
+    	//SimpleFTPClient da;
+
+    	//SimpleFTPClient da;
+
+    	//SimpleFTPClient ftp = new SimpleFTPClient();
+=======
+>>>>>>> refs/remotes/developersamim/master
 
         String applicationPath = request.getServletContext().getRealPath("fileName");
         // constructs path of the directory to save uploaded file

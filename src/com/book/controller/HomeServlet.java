@@ -1,7 +1,12 @@
 package com.book.controller;
 
 import java.io.IOException;
+<<<<<<< HEAD
 import java.util.Properties;
+=======
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> origin/master
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,9 +15,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+<<<<<<< HEAD
 import com.oracle.jrockit.jfr.ContentType;
+=======
+import com.book.dao.Subject;
 
-@WebServlet("/StartMyPage")
+
 public class HomeServlet extends HttpServlet{
 	/**
 	 * 
@@ -22,17 +30,15 @@ public class HomeServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setAttribute("attribute1", "coffee");
+		
+
+		System.out.println("this is StartFirst Class");
 
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
 		requestDispatcher.forward(request, response);
 		
-		//resp.sendRedirect("home.jsp");
+		response.sendRedirect("home.jsp");
 
-		//RequestDispatcher requestDispatcher = req.getRequestDispatcher("firstpage.jsp");
-		//requestDispatcher.forward(req, resp);
-		
-		//resp.sendRedirect("home.jsp");
 
 	}
 	

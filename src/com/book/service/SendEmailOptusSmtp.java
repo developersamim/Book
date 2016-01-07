@@ -1,10 +1,7 @@
 package com.book.service;
 
-import java.security.Key;
 import java.util.Properties;
 
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -13,8 +10,8 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.book.controller.Login;
-import com.book.dao.User;
+import src.com.book.controller.Login;
+import src.com.book.dao.User;
 
 public class SendEmailOptusSmtp {
 	
