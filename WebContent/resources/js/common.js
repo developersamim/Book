@@ -2,16 +2,12 @@
  * common js function for the pages
  */
 
-function addSubject()
+
+
+function addSubjectPage()
 {
-	document.getElementById("subName").value= "";
-		
-	var hiddenInputs = document.getElementsByClassName("hidden");
-	for( var i =0; i!= hiddenInputs.length;i++ )
-	{
-		hiddenInputs[i].style.display = "block";
-	}
-	return true;
+	
+	window.location ="addSubject.jsp";
 	
 	
 }

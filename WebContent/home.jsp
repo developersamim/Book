@@ -3,6 +3,9 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.book.dao.Subject" %>
 <link href="${pageContext.request.contextPath}/resources/css/customStyle.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/common.js"></script>
+
+
 
 <form id="searchBar" class ="well form-search">
 
@@ -10,11 +13,11 @@
 	<button class ="btn">Search</button>
 
 	<div class ="addSubject">
-	<img src ="${pageContext.request.contextPath}/resources/image/addSubjectSymbol.jpg" alt="AddSubject" onclick="addSubject()"/>
-	<a href="">Add Subject</a>
+	<img src ="${pageContext.request.contextPath}/resources/image/addSubjectSymbol.jpg" alt="AddSubject" onclick="addSubjectPage()"/>
+	<a href="addSubject.jsp" >Add Subject</a>
 	</div>
 </form>
-<div >
+<div>
 <%List<Subject> subjectList = new ArrayList<Subject>(); %>
 <%subjectList = (ArrayList<Subject>) request.getAttribute("subjectList"); %>
 <table class ="table"><%
@@ -23,7 +26,8 @@
     {%>
     
         <tr>
-        	<td class="subject-space"><image src="${pageContext.request.contextPath}<%=subjectList.get(i).getImgPath()%>"/>
+        	<td class="subject-space"> 
+        	<image src="${pageContext.request.contextPath}<%=subjectList.get(i).getImgPath()%>"/>
             <a href=""><%= subjectList.get(i).getSubjectName()%></a>
             </td>
 	         	<td class="subject-column-space">Note 
@@ -33,25 +37,8 @@
        
 <%}
 %>
-	
+
  </table>
- 
- <div class ="hidden" id="addSubject">
-	<br/>
-		<form id= "addNewSubject" >
-		<table class ="hidden" cols="2">
-			<tr>
-				<td>
-					<label for="subName">Label for Subject</label>
-				</td>
-				<td>	
-					<input  name="subName"type ="text" id="subName" placeholder="e.g Java"/>
-					
-				</td>
-			</tr>
-			
-			</table>
-		</form>
-</div>
+ </div>
  </body>
 </html>
