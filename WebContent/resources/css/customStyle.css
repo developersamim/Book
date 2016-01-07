@@ -299,6 +299,9 @@ form hr.line {
 }
 /* style for signup page ends here */
 /* style for index page ends here */
+
+
+/*rabindra styles starts here*/
 /* add subject form starts here*/
 form input.selectImage {
 	
@@ -329,3 +332,5 @@ div.subjectDetails {
 	-webkit-transform: rotateY(-180deg);
 	transform: rotateY(-180deg);
 }
+
+/*rabindra styles end here*/
