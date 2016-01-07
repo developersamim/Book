@@ -17,8 +17,7 @@ public class SendEmailOptusSmtp {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private final String username = "developersamim@gmail.com";
-	private final String password = "myvalentine143";
+
 	private String to;
 	private String from;
 	private HttpServletRequest request;
@@ -48,6 +47,9 @@ public class SendEmailOptusSmtp {
 
 		// for tpg
 		props.put("mail.smtp.host", "smtp.tpg.com.au");
+		
+		// for swinburne
+		props.put("mail.smtp.host", "smtp.office365.com");
 		props.put("mail.smtp.port", "25");
 
 		Session session = Session.getInstance(props, null);

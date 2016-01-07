@@ -11,8 +11,7 @@ import javax.mail.internet.MimeMessage;
 
 public class SendEmailGmailSmtp {
 	
-	private final String username = "developersamim@gmail.com";
-    private final String password = "myvalentine143";
+
     private String to;
     private String from;
     
