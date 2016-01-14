@@ -25,16 +25,21 @@ public class HomeServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
-
+				
 		System.out.println("this is StartFirst Class");
 
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
-		requestDispatcher.forward(request, response);
+		/*start code*/
 		
-		response.sendRedirect("home.jsp");
+		Subject subject = new Subject();
+		List<Subject>subjectList = new ArrayList<Subject>();
+		subjectList= subject.subList();
+		
+		req.setAttribute("subjectList", subjectList);
+		RequestDispatcher rd =  req.getRequestDispatcher("home.jsp");
+		rd.forward(req, resp);
+		/*end code*/
 
 
 	}

@@ -15,6 +15,7 @@
 	</div>
 </form>
 <div >
+
 <%List<Subject> subjectList = new ArrayList<Subject>(); %>
 <%subjectList = (ArrayList<Subject>) request.getAttribute("subjectList"); %>
 <table class ="table"><%
@@ -53,5 +54,4 @@
 			</table>
 		</form>
 </div>
- </body>
-</html>
+<jsp:include page="footer.jsp"></jsp:include>

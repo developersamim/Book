@@ -27,6 +27,20 @@
   	<servlet-name>FileDownloadServlet</servlet-name>
   	<url-pattern>/FileDownloadServlet</url-pattern>
   </servlet-mapping>
-  
-
+  <servlet>
+  	<servlet-name>Logout</servlet-name>
+  	<servlet-class>com.book.controller.Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Logout</servlet-name>
+  	<url-pattern>/logoutServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>loginServlet</servlet-name>
+  	<servlet-class>com.book.controller.Login</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>loginServlet</servlet-name>
+  	<url-pattern>/loginServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

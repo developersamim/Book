@@ -1,4 +1,5 @@
 package com.book.controller;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Key;
@@ -10,6 +11,7 @@ import java.sql.Statement;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,13 +19,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import com.book.dao.User;
 import com.book.service.DatabaseAccess;
 
-@WebServlet("/Login")
+
 public class Login extends HttpServlet{	
 	
 	private Connection conn;
+	String databaseUsername = "";
+    String databasePassword = "";
+    String databaseFirstname = "";
 	/**
 	 * 
 	 */
@@ -36,31 +44,58 @@ public class Login extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		super.doGet(req, resp);
+		System.out.println("this is Login get method");
 	}
-
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		boolean authenticateBoolean = authenticate(request, response);	
+		StringBuffer sb = new StringBuffer();
+		BufferedReader reader = request.getReader();
+		String line = null;
+		while ((line = reader.readLine()) != null) {
+			sb.append(line);
+		}
+		System.out.println(sb);
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObjectUser = null;
+		try {
+			jsonObjectUser = (JSONObject) jsonParser.parse(sb.toString());
+		} catch (org.json.simple.parser.ParseException e) {
+			e.printStackTrace();
+		}
+		
+		boolean authenticateBoolean = doAuthenticate(request, response, jsonObjectUser);	
+		System.out.println("AuthenticateBoolean: "+ authenticateBoolean);
 		if(authenticateBoolean){
 			HttpSession session = request.getSession();
 			User user = new User();
-			user.setUsername(request.getParameter("username"));
-			session.setAttribute("username", user.getUsername());
-			response.sendRedirect("home.jsp");
+			user.setUsername(databaseUsername);
+			user.setFirstname(databaseFirstname);
+			session.setAttribute("user", user);
+			
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+
+			out.write("all done");
+			out.flush();
+			out.close();
 		}else{
-			PrintWriter printWriter = response.getWriter();
-			printWriter.println("username or password incorrect");
-			printWriter.close();
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+
+			out.write("wrong");
+			out.flush();
+			out.close();
 		}
 		
 	}
 	
-	private boolean authenticate(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String databaseUsername = "";
-	    String databasePassword = "";
-	    String databaseFirstname = "";
+	private boolean doAuthenticate(HttpServletRequest request, HttpServletResponse response, JSONObject jsonObjectUser) throws IOException{
+		
+		
+		String username = (String) jsonObjectUser.get("username");
+		String password = (String) jsonObjectUser.get("password");
+		
 		
 		
 		DatabaseAccess databaseAccess = new DatabaseAccess("examnote", "root", "", 3306);
