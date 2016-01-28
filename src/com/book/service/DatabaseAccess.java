@@ -1,6 +1,7 @@
 package com.book.service;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -42,20 +43,33 @@ public class DatabaseAccess {
 		return connection;		
 	}
 	
-	public boolean insertQuery(Connection conn, String query){
+	public boolean updateQuery(Connection conn, String query){
+		int rowAffected = 0;
+		boolean updateSuccess;
+		try{
+			stmt = conn.createStatement();
+			rowAffected = stmt.executeUpdate(query);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		updateSuccess = (rowAffected != 0) ? true : false;
+		return updateSuccess;
+	}
+	
+	public int insertQuery(Connection conn, String query){
 		int insertSuccess = 0;
 		try{
 			stmt = conn.createStatement();
-			insertSuccess = stmt.executeUpdate(query);
+			
+			insertSuccess = stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+			//ResultSet rs = stmt.getGeneratedKeys();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 		}
-		if(insertSuccess == 0)
-			return false;
-		else
-			return true;
+		return insertSuccess;
 	}
+	
 	
 	public ResultSet selectQuery (Connection conn, String query) throws SQLException{
 		ResultSet rs = null;
@@ -79,6 +93,23 @@ public class DatabaseAccess {
 		
 	}
 
-	
+	public int insertQueryReturnId(Connection conn, String query){
+		int last_inserted_id = 0;
+		try{
+			
+			PreparedStatement prest;
+            prest = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            prest.executeUpdate();
+            ResultSet rs = prest.getGeneratedKeys();
+            if(rs.next())
+            {
+                last_inserted_id = rs.getInt(1);
+            }
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return last_inserted_id;
+	}
 
 }

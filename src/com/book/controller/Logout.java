@@ -15,7 +15,7 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean logoutBoolean = doLogout(request, response);
 		if(logoutBoolean){
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("home.jsp");
 		}
 	}
 	

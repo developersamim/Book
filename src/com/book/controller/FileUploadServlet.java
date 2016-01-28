@@ -39,14 +39,14 @@ public class FileUploadServlet extends SimpleFTPClient{
             HttpServletResponse response) throws ServletException, IOException {
 
 
-        String applicationPath = request.getServletContext().getRealPath("fileName");
+        String applicationPath = request.getServletContext().getRealPath(UPLOAD_DIR);
         // constructs path of the directory to save uploaded file
-        String uploadFilePath = applicationPath + File.separator + UPLOAD_DIR;
+        String uploadFilePath = applicationPath; //+ File.separator + UPLOAD_DIR;
         File fileSaveDir = new File(uploadFilePath);
         if (!fileSaveDir.exists()) {
             fileSaveDir.mkdirs();
         }        
-      String fileName = null;     
+      String fileName = null;    
       boolean chk = false;
         for (Part part : request.getParts()) {
             fileName = getFileName(part);

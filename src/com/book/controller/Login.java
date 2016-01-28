@@ -94,7 +94,7 @@ public class Login extends HttpServlet{
 
 	}
 	
-	private String getDecryptedPassword(byte[] encryptedText){
+	public String getDecryptedPassword(byte[] encryptedText){
 		
 		String decryptedText = null;
 		String key = "Bar12345Bar12345"; // 128 bit key
