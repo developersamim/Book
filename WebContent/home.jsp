@@ -4,9 +4,7 @@
 <%@ page import="com.book.dao.Subject"%>
 <%List<Subject> subjectList = new ArrayList<Subject>(); %>
 <%subjectList = (ArrayList<Subject>) request.getAttribute("subjectList"); %>
-<link
-	href="${pageContext.request.contextPath}/resources/css/customStyle.css"
-	rel="stylesheet" type="text/css" />
+
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/common.js"></script>
 
