@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+<<<<<<< HEAD
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+=======
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
   <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
     <%-- <%@ page import="java.io.File;" %> --%>
     <%@ page language="java" import="java.util.*,java.lang.*" %> 
+>>>>>>> refs/remotes/developersamim/master
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,6 +21,13 @@ document.getElementById("").click();
 }
 </script> -->
 </head>
+<<<<<<< HEAD
+<body>
+	Something to show:
+	<h2>name</h2>
+	<%String name=(String)request.getAttribute("files");%>
+	<h1><%= name %></h1>
+=======
 <body> 
 
 <h2>Notes</h2>
@@ -30,6 +42,7 @@ document.getElementById("").click();
       <br />
     </c:forEach> 
     </ol>
+>>>>>>> refs/remotes/developersamim/master
 
 </body>
 </html>

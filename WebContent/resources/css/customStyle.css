@@ -1,6 +1,468 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+body, ul, div {
+	margin: 0;
+	padding: 0;
+}
+
+.form-signin {
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+	margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+	font-weight: normal;
+}
+
+.form-signin .form-control {
+	position: relative;
+	font-size: 16px;
+	height: auto;
+	padding: 10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+	z-index: 2;
+}
+
+.form-signin input[type="text"] {
+	margin-bottom: -1px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.form-signin input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.account-wall {
+	margin-top: 20px;
+	padding: 40px 0px 20px 0px;
+	background-color: #f7f7f7;
+	-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.login-title {
+	color: #555;
+	font-size: 18px;
+	font-weight: 400;
+	display: block;
+}
+
+.profile-img {
+	width: 96px;
+	height: 96px;
+	margin: 0 auto 10px;
+	display: block;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+}
+
+.need-help {
+	margin-top: 10px;
+}
+
+.new-account {
+	display: block;
+	margin-top: 10px;
+}
+
+/* style for index page begins here */
+div.logo {
+	border-color: #e0393d;
+	border-radius: 3px;
+	border-style: solid;
+	border-width: 14px 4px 6px;
+	color: #000;
+	display: inline-block;
+	font-weight: 700;
+}
+
+div.logo a {
+	color: #000;
+	font-size: 14px;
+	padding: 3px;
+}
+
+div.logo a:hover {
+	text-decoration: none;
+}
+
+header {
+	background: #000000;
+	color: #ffffff
+}
+
+.topbar {
+	background: #333;
+	padding: 7px;
+}
+
+.topbar ul {
+	list-style: none;
+}
+
+.topbar ul li {
+	float: left;
+	color: #fff
+}
+
+.topbar ul li a {
+	color: #ffffff;
+	text-decoration: underline;
+	padding: 0 10px;
+}
+
+.topbar ul li a:hover {
+	color: #777777;
+}
+/* style for index page ends here */
+
+/* to change the alternate color of the table row*/
+.addSubject {
+	float: right;
+	margin-right: 50px;
+}
+
+.table tr:nth-child(odd) {
+	background-color: #ccc;
+}
+
+.subject-space {
+	word-spacing: 15px;
+}
+
+.subject-column-space {
+	word-spacing: 200px;
+}
+
+.topbar {
+	background: #fff;
+	padding: 7px;
+	border-bottom: 2px solid #ddd;
+}
+
+.topbar ul {
+	float: right;
+	margin-top: 3px;
+}
+
+.topbar ul li {
+	float: left;
+	color: #fff;
+	padding: 7px;
+}
+
+.topbar ul li.button {
+	background: #e0393e none repeat scroll 0 0;
+	box-shadow: #851518 0 2px 0 0;
+}
+
+.topbar ul li.button:hover {
+	background: #d02126
+}
+
+.topbar ul li a {
+	color: #3987cb;
+	padding: 0 10px;
+}
+
+.topbar ul li.button a {
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1;
+	color: #fff
+}
+
+.topbar ul li a:hover {
+	
+}
+
+.topbar ul li.button a:hover {
+	color: #fff
+}
+
+/* style for signup page starts here */
+section#firstsection {
+	background: #303841;
+}
+
+section#firstsection div.signup {
+	background: #fff;
+	margin-top: 15px;
+}
+
+form {
+	padding: 10px 0;
+}
+
+form div.labelinput {
+	clear: both;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+form div.labelinput div.input {
+	
+}
+
+form div.labelinput div.input input[type="text"], input[type="password"]
+	{
+	border: 1px solid #ccc;
+	font-size: 16px;
+	padding: 8px;
+	width: 100%;
+	border-radius: 2.5px;
+	color: #555;
+}
+
+form div.labelinput div.label {
+	color: #555;
+	height: 41px;
+	line-height: 41px;
+}
+
+form div.labelinput div.label label {
+	font-weight: normal;
+	font-size: 18px;
+	float: left;
+}
+
+form div.labelinput.sex {
+	margin-bottom: 0
+}
+
+form div.input.sex {
+	height: 41px;
+	line-height: 41px;
+}
+
+form div.input.birthday {
+	height: 39px;
+	line-height: 39px;
+}
+
+form input.submit[type=submit] {
+	background: #e0393e none repeat scroll 0 0;
+	border: 0 none;
+	box-shadow: 0 2px 0 0 #851518;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 700;
+	padding: 10px;
+	width: 100%;
+}
+
+form div.submitButton {
+	padding: 0
+}
+
+form input.normal[type=radio] {
+	vertical-align: middle;
+	margin-top: -3px;
+}
+
+form select.birthday {
+	padding: 10px 4px;
+	margin-right: 3px;
+	width: 32%;
+}
+
+form select.last {
+	margin-right: 0;
+}
+
+form label.sex {
+	margin: 0 3px;
+	font-weight: normal;
+	font-size: 16px;
+}
+
+form label.sex.first {
+	margin-right: 20px;
+}
+
+form hr.line {
+	border-color: #ccc;
+}
+/* style for signup page ends here */
+/* style for index page ends here */
+
+
+/*rabindra styles starts here*/
+/* add subject form starts here*/
+form input.selectImage {
+	
+}
+
+/* add subject form ends here*/
+/* div.subjectDetails {
+	margin-top: 15 px;
+	background-image: url("../image/car.jpg");
+	background-size: cover;
+	background-color: transparent;
+	background-repeat: no-repeat;
+} */
+
+.section {
+  margin-bottom: 40px;
+}
+
+
+.section__content {
+  padding-left: 3px;
+}
+section #home_subjectList_section
+{
+	background: none;
+}
+/**
+ * The cards
+ *
+ * Each card plays home to a front and back. I've set them up as squares here
+ * by using the padding technique, but you may set them up in any dimensions
+ * you like based on your site design.
+ */
+.card {
+  position: relative;
+  float: left;
+  padding-bottom: 25%;
+  width: 25%;
+  text-align: center;
+}
+
+.card:nth-child(1) {
+  margin-left: -3px;
+  margin-right: 1px;
+}
+
+.card:nth-child(2),
+.card:nth-child(3) {
+  margin-right: 1px;
+}
+
+/* card fronts and backs */
+
+.card__front,
+.card__back {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transition: -webkit-transform 0.3s;
+          transition: transform 0.3s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.card__front {
+
+}
+
+.card__back {
+  
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+}
+
+/* card text */
+.card__text {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  height: 20px;
+  color: #fff;
+  font-family: "Roboto Slab", serif;
+  line-height: 20px;
+}
+
+/* hover effect */
+.card.effect__hover:hover .card__front {
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+}
+
+.card.effect__hover:hover .card__back {
+  -webkit-transform: rotateY(0);
+          transform: rotateY(0);
+}
+h2.section__title
+{
+	text-align: center;
+}
+div.card__text
+{
+	color: black;
+	background-color: red;
+}
+
+div.card__front_text
+{
+	margin-top: 90px
+}
+.parentDiv{
+	  background-color: #00AFFE;
+    opacity: 0.9;
+    padding: 52px;
+    color: #0000;
+    margin-top: 13px;
+    width: 95%;
+    margin-left: 7px;}
+    
+.parentDivBack{
+	background-color: #007B00;
+    opacity: 0.9;
+    padding: 52px;
+    color: #fff;
+    margin-top: 13px;
+    width: 95%;
+    margin-left: 7px;
+}
+.parentDiv div.text{    font-size: 24px;
+    text-transform: uppercase;}
+.parentDiv div.text1{     font-size: 24px;
+    text-transform: uppercase;}
+.parentDivBack div.text{    font-size: 24px;
+    text-transform: uppercase;}
+.parentDivBack div.text1{     font-size: 24px;
+    text-transform: uppercase;} 
+.subjectList
+{
+	background-image: url("../image/c.jpg");
+	background-repeat: no-repeat;
+    background-size: cover;
+}
+.secondRow
+{
+	margin-top: -20px;
+	
+}   
+/*rabindra styles end here*/
+=======
+body,ul, div{ margin: 0; padding:0;}
+=======
 body,ul, div, li, a{ margin: 0; padding:0;}
 
 /* style for signin starts here by hasmi */
+>>>>>>> refs/remotes/developersamim/master
 .form-signin
 {
     max-width: 330px;
@@ -147,6 +609,9 @@ form input.inputTextRequired{border-color: #a94442 !important;}
 form p.formErrorMessage{ color: #dd4b39;}
 /* error ends here */
 
+<<<<<<< HEAD
+>>>>>>> refs/remotes/developersamim/master
+=======
 /* notification starts here */
 
 /* notification ends here */
@@ -165,3 +630,4 @@ section#footer div.wrapper{}
 /* google button end here */
 
 /* style for footer ends here */
+>>>>>>> refs/remotes/developersamim/master

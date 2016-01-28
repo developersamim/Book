@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>Book</display-name>
+	<servlet>
+		<servlet-name>HomeServlet</servlet-name>
+		<servlet-class>com.book.controller.HomeServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HomeServlet</servlet-name>
+		<url-pattern></url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>FileDownloadServlet</servlet-name>
+		<servlet-class>com.book.controller.FileDownloadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FileDownloadServlet</servlet-name>
+		<url-pattern>/FileDownloadServlet</url-pattern>
+	</servlet-mapping>
+=======
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>Book</display-name>
 
@@ -27,6 +51,11 @@
   	<servlet-name>FileDownloadServlet</servlet-name>
   	<url-pattern>/FileDownloadServlet</url-pattern>
   </servlet-mapping>
+<<<<<<< HEAD
+  
+
+>>>>>>> refs/remotes/developersamim/master
+=======
   <servlet>
   	<servlet-name>Logout</servlet-name>
   	<servlet-class>com.book.controller.Logout</servlet-class>
@@ -43,4 +72,5 @@
   	<servlet-name>loginServlet</servlet-name>
   	<url-pattern>/loginServlet</url-pattern>
   </servlet-mapping>
+>>>>>>> refs/remotes/developersamim/master
 </web-app>
