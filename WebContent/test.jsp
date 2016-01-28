@@ -15,6 +15,8 @@
 			alt="AddSubject" onclick="addSubjectPage()" /> <a
 			href="addSubject.jsp">Add Subject</a>
 	</div>
+	
+		
 </form>
 <section id="home_subjectList_section" class="subjectList">
 	<div class="container">
@@ -30,7 +32,7 @@
 			<div class="col-md-12">
 
 				
-				<%
+				 <%
 	
     for(int i=0; i<subjectList.size();i++)
     	
@@ -38,16 +40,16 @@
     %>
 		<div class=" col-md-3 card effect__hover">
 		<div class="card__front parentDiv">
-						<div class=" text">
-						<a href=""><%= subjectList.get(i).getSubjectName()%></a>
+						<div class="text">
+						<%= subjectList.get(i).getSubjectName()%>
 						</div>
-						<div class=" text1">
-							<image src="${pageContext.request.contextPath}<%=subjectList.get(i).getImgPath()%>" />
+						<div class="text1">
+							<%-- <image alt="subjectImage" src="<%=subjectList.get(i).getSubjectImage()%>" height="50" width="30" /> --%> 
 						</div>
 					</div>
 					<div class="card__back parentDivBack">
 						<div class="text">back</div>
-						<div class="text1">Notes:15</div>
+						<div class="text1"><a href ="">Notes:15</a></div>
 					</div>
 					</div>
 				<%}
