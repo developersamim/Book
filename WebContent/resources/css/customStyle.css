@@ -620,5 +620,14 @@ form p.formErrorMessage{ color: #dd4b39;}
 /* style for footer starts here */
 section#footer{ height: 11vh;}
 section#footer div.wrapper{}
+
+/* google button start here */
+.googleButton{background: url('../image/google24.png') top left no-repeat #dd4b39;
+    color: #fff;
+    padding: 8px;
+    text-align: center;
+    font-size: 16px;}
+/* google button end here */
+
 /* style for footer ends here */
 >>>>>>> refs/remotes/developersamim/master

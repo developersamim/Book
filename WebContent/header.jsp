@@ -61,6 +61,8 @@
 <html ng-app="myApp">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <!-- <meta name="google-signin-client_id" content="642272481305-eqeslfjmal3du4hr9hvlh7sj4cd7op2j.apps.googleusercontent.com">-->
+    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>-->
 <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="${pageContext.request.contextPath}/resources/css/customStyle.css" rel="stylesheet" type="text/css"/>
 <!-- angular flash message -->

@@ -6611,7 +6611,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3 signup" >
+				
 					<form name="signupForm" ng-submit="createUser(signupForm.$valid)" novalidate>
+						
 						<div class="labelinput" ng-class="{ 'has-error' : signupForm.firstname.$invalid && submitted }">
 							<div class="col-md-3 label">
 								<label>Firstname</label>
@@ -6946,5 +6948,9 @@
 =======
 	</section>
 	
+<<<<<<< HEAD
 >>>>>>> refs/remotes/developersamim/master
 <jsp:include page="footer.jsp"></jsp:include>
+=======
+<jsp:include page="footer.jsp"></jsp:include>
+>>>>>>> refs/remotes/developersamim/master
