@@ -32,9 +32,8 @@ public class HomeServlet extends HttpServlet{
 		Subject subject = new Subject();
 		List<Subject>subjectList = new ArrayList<Subject>();
 		subjectList= subject.subList();
-		
 		req.setAttribute("subjectList", subjectList);
-		RequestDispatcher rd =  req.getRequestDispatcher("home.jsp");
+		RequestDispatcher rd =  req.getRequestDispatcher("test.jsp");
 		rd.forward(req, resp);
 		/*end code*/
 				
