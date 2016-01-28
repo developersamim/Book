@@ -47,3 +47,37 @@ public class HomeServlet extends HttpServlet{
 
 
 
+<<<<<<< HEAD
+=======
+
+import com.book.dao.Subject;
+
+
+public class HomeServlet extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+				
+		System.out.println("this is StartFirst Class");
+
+		/*start code*/
+		
+		Subject subject = new Subject();
+		List<Subject>subjectList = new ArrayList<Subject>();
+		subjectList= subject.subList();
+		
+		req.setAttribute("subjectList", subjectList);
+		RequestDispatcher rd =  req.getRequestDispatcher("home.jsp");
+		rd.forward(req, resp);
+		/*end code*/
+
+
+	}
+	
+}
+>>>>>>> refs/remotes/developersamim/master
