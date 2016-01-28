@@ -1,28 +1,23 @@
 package com.book.dao;
 
+
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.ServletContext;
+import javax.swing.ImageIcon;
 
 import com.book.service.DatabaseAccess;
 
 import Query.DBQuery;
-
-/*import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;*/
 
 public  class Subject{
 	
@@ -30,31 +25,19 @@ public  class Subject{
 	private String subjectName="";
 	private int rating;
 	private String imgPath;
+	private ImageIcon subjectImage;
 	private String tag;
 	List<Subject> subjectList;
+	private static final int BUFFER_SIZE = 4096;
 	
 	
 	
-	public List<Subject> subList()
+	public List<Subject> subList() throws IOException
 	{
 		Connection conn;
 		subjectList = new ArrayList<Subject>();
-		/*
-		Subject s1 = new Subject();
-		s1.setImgPath("/resources/image/defaultIcon.jpg");
-		s1.setSubjectName("java");
-		subjectList.add(s1);
-		Subject s2 = new Subject();
-		s2.setImgPath("/resources/image/defaultIcon.jpg");
-		s2.setSubjectName("php");
-		subjectList.add(s2);
-		Subject s3 = new Subject();
-		s3.setImgPath("/resources/image/defaultIcon.jpg");
-		s3.setSubjectName("angulr");
-		subjectList.add(s3);
-		setSubjectList(subjectList);
 		
-		return subjectList;*/
+		 String filePath = "E:/Photos/";
 		
 		DatabaseAccess databaseAccess = new DatabaseAccess("examnote", "root", "", 3306);
 		conn = databaseAccess.getConnection();
@@ -68,11 +51,29 @@ public  class Subject{
 		    while (rs.next()) {
 		    	Subject subject = new Subject();
 		    	subject.setSubjectName(rs.getString(1));
-		    	subject.setTag(rs.getString(2));
-		    	subject.setImgPath("/resources/image/defaultIcon.jpg");
-		    	subjectList.add(subject);
+		    	subject.setTag(rs.getString(3));
+		    	Blob blob = rs.getBlob(2); 	
+		    	InputStream inputStream = blob.getBinaryStream();
+                OutputStream outputStream = new FileOutputStream(filePath+rs.getString(1)+".jpg");
+                 int bytesRead = -1;
+                byte[] buffer = new byte[BUFFER_SIZE];
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+                inputStream.close();
+                outputStream.close();
+                
+		    	/*ImageIcon imageIcon = new ImageIcon(
+		    			 blob.getBytes(1, (int)blob.length()));*/
+ 
+                
+                System.out.println("File saved");
+		    		    	
+		  // 	subject.setImgPath("/resources/image/defaultIcon.jpg");
+		   	/*subject.setSubjectImage(imageIcon);
+		    	subjectList.add(subject);*/
 		    }
-		    
+		    rs.close(); 
 		    
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -116,6 +117,17 @@ public  class Subject{
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
+
+	public ImageIcon getSubjectImage() {
+		return subjectImage;
+	}
+
+	public void setSubjectImage(ImageIcon subjectImage) {
+		this.subjectImage = subjectImage;
+	}
+
+	
+	
 	
 	
 	
